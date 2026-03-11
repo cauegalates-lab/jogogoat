@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIGRE 🐯 Elite Sales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a1928 0%, #1a2f3f 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header com Tigre */
+        .header {
+            background: linear-gradient(135deg, #0d2b3e 0%, #1a3b4f 100%);
+            border-radius: 30px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2c4c63;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🐯';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            right: -30px;
+            bottom: -50px;
+            transform: rotate(10deg);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 span {
+            display: inline-block;
+            animation: roar 2s ease-in-out infinite;
+        }
+
+        @keyframes roar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); filter: drop-shadow(0 0 10px #ff9900); }
+        }
+
+        .meta-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            color: #0d2b3e;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 2px solid #ff9900;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Grid Principal */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            gap: 2rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid #e1e8ed;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0d2b3e;
+            border-bottom: 2px solid #ff9900;
+            padding-bottom: 1rem;
+        }
+
+        /* Inputs */
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #0d2b3e;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-group select,
+        .input-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #dde2e5;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .input-group select:focus,
+        .input-group input:focus {
+            outline: none;
+            border-color: #ff9900;
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
+        }
+
+        /* Botão Tigre */
+        .btn-primary {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '🐯';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            right: -10px;
+            bottom: -10px;
+            transform: rotate(15deg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.4);
+        }
+
+        /* Ranking Items */
+        .ranking-item {
+            background: linear-gradient(135deg, #f8fafc 0%, #eef2f6 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s;
+            border-left: 4px solid #ff9900;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ranking-item::after {
+            content: '🐯';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.03;
+            right: -10px;
+            bottom: -10px;
+            transform: rotate(10deg);
+        }
+
+        .ranking-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .ranking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .vendedor-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0d2b3e;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tiger-crown {
+            font-size: 1.5rem;
+            animation: tigerPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes tigerPulse {
+            0%, 100% { filter: drop-shadow(0 0 2px #ff9900); }
+            50% { filter: drop-shadow(0 0 10px #ff9900); transform: scale(1.1); }
+        }
+
+        .venda-total {
+            background: #ff9900;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #dde2e5;
+            border-radius: 50px;
+            overflow: hidden;
+            margin-top: 0.8rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff9900 0%, #ff6600 100%);
+            border-radius: 50px;
+            transition: width 1s ease;
+        }
+
+        /* Card do Prêmio Tigre */
+        .premio-card {
+            background: linear-gradient(135deg, #0d2b3e 0%, #1a3b4f 100%);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            color: white;
+            text-align: center;
+            border: 2px solid #ff9900;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premio-card::before {
+            content: '🐯';
+            position: absolute;
+            font-size: 6rem;
+            opacity: 0.1;
+            right: -20px;
+            bottom: -30px;
+            transform: rotate(15deg);
+        }
+
+        .premio-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .premio-valor {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: #ff9900;
+        }
+
+        .premio-desc {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            color: #ff9900;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Mensagem de Erro */
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-left: 4px solid #c62828;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Histórico */
+        .history-section {
+            margin-top: 2rem;
+            border-top: 2px solid #ff9900;
+            padding-top: 1.5rem;
+        }
+
+        .history-title {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0d2b3e;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .venda-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s;
+            border-left: 4px solid #ff9900;
+        }
+
+        .venda-item:hover {
+            background: #eef2f6;
+            transform: translateX(5px);
+        }
+
+        .venda-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .venda-badge {
+            background: #ff9900;
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #dc3545;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .btn-delete:hover {
+            background: #ffebee;
+            transform: scale(1.1);
+        }
+
+        /* Estatísticas */
+        .stats-footer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            background: #ff9900;
+            color: #0d2b3e;
+            padding: 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .premio-valor {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span>🐯</span> TIGRE DA BAIA <span>🐯</span></h1>
+            <div class="meta-badge">
+                <span>🐯</span>
+                <span>META: R$ 6.000,00</span>
+                <span>👑</span>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <!-- Card de Cadastro -->
+            <div class="card">
+                <h3>
+                    <span>🐯</span>
+                    REGISTRAR VENDA
+                </h3>
+                
+                <div class="input-group">
+                    <label>VENDEDOR</label>
+                    <select id="vendedor">
+                        <option value="CAUE">🐯 CAUE</option>
+                        <option value="AMANDA">🐯 AMANDA</option>
+                        <option value="ALLANA">🐯 ALLANA</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>VALOR</label>
+                    <input type="number" id="valor" placeholder="R$ 0,00" step="0.01">
+                </div>
+
+                <button class="btn-primary" onclick="registrarVenda()">
+                    <span>🐯</span>
+                    CONFIRMAR VENDA
+                    <span>🐯</span>
+                </button>
+
+                <!-- Área de mensagem de erro -->
+                <div id="errorContainer"></div>
+
+                <!-- Prêmio Tigre -->
+                <div class="premio-card" id="premioCard">
+                    <div class="premio-title">
+                        <span>🐯</span>
+                        PRÊMIO TIGRE
+                        <span>🐯</span>
+                    </div>
+                    <div class="premio-valor" id="premioValor">R$ 0</div>
+                    <div class="premio-desc" id="premioDesc">
+                        O tigre que atingir a meta primeiro<br>
+                        ganha um <span class="highlight">BRINDE EXCLUSIVO</span> 🎯
+                    </div>
+                </div>
+
+                <!-- Histórico -->
+                <div class="history-section">
+                    <div class="history-title">
+                        <span>📋</span>
+                        ÚLTIMAS VENDAS
+                    </div>
+                    <div id="historicoVendas">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Ranking -->
+            <div class="card">
+                <h3>
+                    <span>👑</span>
+                    RANKING DOS TIGRES
+                </h3>
+                
+                <div id="rankingList">
+                    <!-- Preenchido via JS -->
+                </div>
+
+                <!-- Estatísticas -->
+                <div class="stats-footer">
+                    <div class="stat-item" id="totalGeral">R$ 0</div>
+                    <div class="stat-item" id="liderAtual">🐯 ---</div>
+                    <div class="stat-item" id="metaGeral">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDDfh0bzpv0aMvMcp6Dp7626EeJdXbstlw",
+            authDomain: "sistema-de-vendas-8cdb9.firebaseapp.com",
+            databaseURL: "https://sistema-de-vendas-8cdb9-default-rtdb.firebaseio.com",
+            projectId: "sistema-de-vendas-8cdb9",
+            storageBucket: "sistema-de-vendas-8cdb9.appspot.com",
+            messagingSenderId: "570383573044",
+            appId: "1:570383573044:web:672531ad3af5341a1c2a61"
+        };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const SENHA_ADM = "goat123";
+        const META = 6000;
+
+        // Prêmios do Tigre
+        const PREMIOS = [
+            { nome: "Jantar Executivo", valor: 350, icone: "🍽️" },
+            { nome: "Day Spa", valor: 450, icone: "💆" },
+            { nome: "Headset Gamer", valor: 300, icone: "🎧" },
+            { nome: "Vinho Premium", valor: 280, icone: "🍷" },
+            { nome: "Alexa Echo", valor: 380, icone: "📱" },
+            { nome: "Kindle", valor: 400, icone: "📚" }
+        ];
+
+        let primeiroColocado = null;
+        let premioAtual = PREMIOS[Math.floor(Math.random() * PREMIOS.length)];
+
+        // Função para formatar moeda
+        const formatMoney = (value) => {
+            return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        };
+
+        // Função para mostrar erro
+        function showError(message) {
+            const errorContainer = document.getElementById('errorContainer');
+            errorContainer.innerHTML = `
+                <div class="error-message">
+                    <span>⚠️</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            // Remove a mensagem após 3 segundos
+            setTimeout(() => {
+                errorContainer.innerHTML = '';
+            }, 3000);
+        }
+
+        // Registrar venda (CORRIGIDO)
+        window.registrarVenda = async function() {
+            try {
+                const vendedor = document.getElementById('vendedor').value;
+                const valorInput = document.getElementById('valor');
+                const valor = parseFloat(valorInput.value);
+
+                // Validações
+                if (!valor || valor <= 0) {
+                    showError("Por favor, insira um valor válido maior que zero!");
+                    return;
+                }
+
+                if (isNaN(valor)) {
+                    showError("Por favor, insira apenas números!");
+                    return;
+                }
+
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '<span class="loading"></span> Processando...';
+                button.disabled = true;
+
+                try {
+                    // Referência correta para o push
+                    const vendasRef = ref(db, 'vendas_goat');
+                    await push(vendasRef, {
+                        vendedor: vendedor,
+                        valor: valor,
+                        timestamp: Date.now()
+                    });
+                    
+                    // Sucesso
+                    valorInput.value = '';
+                    
+                    button.innerHTML = '✅ VENDA REGISTRADA!';
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                        button.disabled = false;
+                    }, 2000);
+
+                } catch (firebaseError) {
+                    console.error("Erro Firebase:", firebaseError);
+                    showError("Erro ao conectar com o banco de dados. Tente novamente!");
+                    button.innerHTML = originalText;
+                    button.disabled = false;
+                }
+
+            } catch (error) {
+                console.error("Erro geral:", error);
+                showError("Ocorreu um erro inesperado!");
+            }
+        };
+
+        // Excluir venda
+        window.excluirVenda = function(id) {
+            const pass = prompt("🔐 Senha administrativa:");
+            if (pass === SENHA_ADM) {
+                remove(ref(db, `vendas_goat/${id}`))
+                    .then(() => alert("✅ Venda excluída!"))
+                    .catch(() => showError("❌ Erro ao excluir!"));
+            } else {
+                showError("❌ Senha incorreta!");
+            }
+        };
+
+        // Atualizar dados em tempo real
+        onValue(ref(db, 'vendas_goat'), (snapshot) => {
+            const data = snapshot.val();
+            const totais = { CAUE: 0, AMANDA: 0, ALLANA: 0 };
+            let totalGeral = 0;
+            let lider = { nome: '', valor: 0 };
+            
+            const histDiv = document.getElementById('historicoVendas');
+            const rankDiv = document.getElementById('rankingList');
+            
+            histDiv.innerHTML = '';
+            rankDiv.innerHTML = '';
+
+            if (data) {
+                const entries = Object.entries(data).reverse();
+                
+                entries.forEach(([id, venda]) => {
+                    if (venda && venda.vendedor && totais.hasOwnProperty(venda.vendedor)) {
+                        totais[venda.vendedor] += venda.valor || 0;
+                        totalGeral += venda.valor || 0;
+                    }
+
+                    // Histórico
+                    if (histDiv.children.length < 5 && venda && venda.vendedor) {
+                        const dataVenda = venda.timestamp ? new Date(venda.timestamp).toLocaleTimeString('pt-BR') : 'Agora';
+                        histDiv.innerHTML += `
+                            <div class="venda-item">
+                                <div class="venda-info">
+                                    <span class="venda-badge">${venda.vendedor}</span>
+                                    <span style="font-weight: bold;">${formatMoney(venda.valor || 0)}</span>
+                                    <span style="color: #666; font-size: 0.8rem;">${dataVenda}</span>
+                                </div>
+                                <button class="btn-delete" onclick="excluirVenda('${id}')">
+                                    🗑️
+                                </button>
+                            </div>
+                        `;
+                    }
+                });
+            }
+
+            // Encontrar líder
+            Object.entries(totais).forEach(([nome, total]) => {
+                if (total > lider.valor) {
+                    lider = { nome, valor: total };
+                }
+            });
+
+            // Ranking ordenado
+            Object.entries(totais)
+                .sort((a,b) => b[1] - a[1])
+                .forEach(([nome, total], index) => {
+                    const perc = Math.min((total / META) * 100, 100);
+                    
+                    rankDiv.innerHTML += `
+                        <div class="ranking-item">
+                            <div class="ranking-header">
+                                <div class="vendedor-name">
+                                    ${index === 0 ? '👑' : index === 1 ? '⭐' : index === 2 ? '✨' : '🐯'} ${nome}
+                                    ${total >= META ? '<span class="tiger-crown">🐯👑</span>' : ''}
+                                </div>
+                                <span class="venda-total">${formatMoney(total)}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #666;">
+                                <span>Progresso</span>
+                                <span>${perc.toFixed(1)}%</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: ${perc}%"></div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+            // Atualizar estatísticas
+            document.getElementById('totalGeral').innerHTML = `Total: ${formatMoney(totalGeral)}`;
+            document.getElementById('liderAtual').innerHTML = `Líder: ${lider.nome ? '🐯 ' + lider.nome : '---'}`;
+            document.getElementById('metaGeral').innerHTML = `${((totalGeral / (META * 3)) * 100).toFixed(1)}%`;
+        }, (error) => {
+            console.error("Erro ao carregar dados:", error);
+            showError("Erro ao carregar dados do servidor!");
+        });
+    </script>
+</body>
+</html>
