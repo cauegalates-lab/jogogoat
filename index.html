@@ -509,7 +509,7 @@
     /* Responsividade */
     @media (max-width: 980px) {
       .main-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
       }
       
       .header-inner {
@@ -533,6 +533,32 @@
         transform: translateY(0);
       }
     }
+
+    .top-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-icon {
+      background: var(--card-bg);
+      border: 1px solid var(--stroke);
+      font-size: 20px;
+      transition: all 0.2s;
+    }
+
+    .btn-icon:hover {
+      transform: scale(1.05);
+    }
+
+    .venda-item {
+      transition: all 0.2s ease;
+    }
+
+    .venda-item:hover {
+      transform: translateX(4px);
+      border-color: var(--blue) !important;
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -555,7 +581,7 @@
           <span style="width: 8px; height: 8px; background: #18a957; border-radius: 50%;"></span>
           <b>LIVE</b> conectado
         </div>
-        <button class="btn-icon" id="themeBtn" style="width: 48px; height: 48px; border-radius: 100px; background: var(--card-bg); border: 1px solid var(--stroke); cursor: pointer;">
+        <button class="btn-icon" id="themeBtn" style="width: 48px; height: 48px; border-radius: 100px; cursor: pointer;">
           🌓
         </button>
       </div>
@@ -564,7 +590,7 @@
     <header class="header fade-in">
       <div class="header-inner">
         <div class="title">
-          <h1>RANKING · META SEMANAL</h1>
+          <h1>DESAFIO . GOAT</h1>
           <p style="color: var(--muted); font-weight: 600; margin-top: 8px;">
             Apenas vendas <span style="color: var(--ok); background: rgba(24, 169, 87, 0.1); padding: 4px 8px; border-radius: 100px; font-weight: 800;">QUITADO</span> contam. Quem bater a meta ganha almoço no Ditos!
           </p>
@@ -595,23 +621,23 @@
         <div style="display: flex; flex-direction: column; gap: 16px;">
           <div class="input-group">
             <label style="display: block; margin-bottom: 8px; color: var(--muted); font-weight: 800; font-size: 12px; letter-spacing: 0.1em;">VENDEDOR</label>
-            <select id="vendedor" style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--card-bg); border: 1px solid var(--stroke); color: var(--ink);">
-              <option value="CAUE">CAUE</option>
-              <option value="AMANDA">BRUNA MORAES</option>
-              <option value="ALLANA">ALLANA</option>
-               <option value="ALLANA">NATÁLIA</option>
+            <select id="vendedor" style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--card-bg); border: 1px solid var(--stroke); color: var(--ink); font-weight: 500;">
+              <option value="CAUE">🔥 CAUE</option>
+              <option value="BRUNA MORAES">✨ BRUNA MORAES</option>
+              <option value="KEVYN">⚡ KEVYN</option>
+              <option value="LETICIA GORETTI">🌸 LETICIA GORETTI</option>
             </select>
           </div>
 
           <div class="input-group">
-            <label style="display: block; margin-bottom: 8px; color: var(--muted); font-weight: 800; font-size: 12px; letter-spacing: 0.1em;">VALOR</label>
-            <input type="number" id="valor" placeholder="0,00" step="0.01" style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--card-bg); border: 1px solid var(--stroke); color: var(--ink);">
+            <label style="display: block; margin-bottom: 8px; color: var(--muted); font-weight: 800; font-size: 12px; letter-spacing: 0.1em;">VALOR (R$)</label>
+            <input type="number" id="valor" placeholder="0,00" step="0.01" style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--card-bg); border: 1px solid var(--stroke); color: var(--ink); font-size: 16px;">
           </div>
 
           <div class="input-group">
             <label style="display: block; margin-bottom: 8px; color: var(--muted); font-weight: 800; font-size: 12px; letter-spacing: 0.1em;">STATUS</label>
             <select id="status" style="width: 100%; padding: 14px; border-radius: var(--radius-md); background: var(--card-bg); border: 1px solid var(--stroke); color: var(--ink);">
-              <option value="QUITADO">✅ QUITADO</option>
+              <option value="QUITADO">✅ QUITADO (CONTA PARA META)</option>
             </select>
           </div>
 
@@ -633,7 +659,7 @@
           <div style="margin-top: 16px;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
               <span style="font-weight: 800; color: var(--muted); letter-spacing: 0.1em;">ÚLTIMAS VENDAS</span>
-              <button class="history-toggle" id="toggleHist" style="padding: 8px 16px; border-radius: 100px; border: 1px solid var(--stroke); background: var(--card-bg); color: var(--ink); cursor: pointer;">Ocultar</button>
+              <button class="history-toggle" id="toggleHist" style="padding: 8px 16px; border-radius: 100px; border: 1px solid var(--stroke); background: var(--card-bg); color: var(--ink); cursor: pointer; font-weight: 600;">Ocultar</button>
             </div>
             <div id="historicoVendas"></div>
           </div>
@@ -659,7 +685,7 @@
             <div class="v" style="font-weight: 900; font-size: 18px;" id="liderAtual">—</div>
           </div>
           <div class="stat">
-            <div class="k" style="color: var(--muted); font-size: 11px; letter-spacing: 0.1em; margin-bottom: 8px;">PROGRESSO</div>
+            <div class="k" style="color: var(--muted); font-size: 11px; letter-spacing: 0.1em; margin-bottom: 8px;">PROGRESSO GERAL</div>
             <div class="v" style="font-weight: 900; font-size: 18px;" id="metaGeral">0,0%</div>
           </div>
         </div>
@@ -690,6 +716,7 @@
     // Constantes
     const SENHA_ADM = "goat123";
     const META = 10000;
+    const VENDEDORES_VALIDOS = ["CAUE", "BRUNA MORAES", "KEVYN", "LETICIA GORETTI"];
 
     // Gerar partículas
     function createParticles() {
@@ -824,7 +851,7 @@
       const btn = ev?.currentTarget || document.getElementById("btnConfirmar");
       const original = btn.innerHTML;
       btn.disabled = true;
-      btn.innerHTML = `<span class="loading"></span> PROCESSANDO`;
+      btn.innerHTML = `<span style="opacity:0.8;">⚡ PROCESSANDO</span>`;
 
       try {
         const vendasRef = ref(db, "vendas_goat");
@@ -843,7 +870,7 @@
 
     // Excluir venda
     window.excluirVenda = async function(id) {
-      const pass = prompt("Senha administrativa:");
+      const pass = prompt("🔐 Senha administrativa:");
       if (pass !== SENHA_ADM) {
         toast("Acesso negado", "Senha incorreta", "bad");
         return;
@@ -857,14 +884,14 @@
     };
 
     // Realtime data
-    let prevTotals = { CAUE: 0, AMANDA: 0, ALLANA: 0, totalGeral: 0 };
+    let prevTotals = { CAUE: 0, "BRUNA MORAES": 0, KEVYN: 0, "LETICIA GORETTI": 0, totalGeral: 0 };
     let prevLeader = "";
 
     onValue(ref(db, "vendas_goat"), (snapshot) => {
       statusNet.innerHTML = '<span style="width: 8px; height: 8px; background: #18a957; border-radius: 50%;"></span><b>LIVE</b> conectado';
       
       const data = snapshot.val();
-      const totais = { CAUE: 0, AMANDA: 0, ALLANA: 0 };
+      const totais = { CAUE: 0, "BRUNA MORAES": 0, KEVYN: 0, "LETICIA GORETTI": 0 };
       let totalGeral = 0;
 
       histDiv.innerHTML = "";
@@ -885,7 +912,7 @@
             }
           }
 
-          if (histDiv.children.length < 6 && vendedor) {
+          if (histDiv.children.length < 6 && vendedor && VENDEDORES_VALIDOS.includes(vendedor)) {
             const hora = venda.timestamp ? new Date(venda.timestamp).toLocaleTimeString("pt-BR") : "agora";
             histDiv.insertAdjacentHTML("beforeend", `
               <div class="venda-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px; background: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--stroke); margin-bottom: 8px;">
@@ -893,18 +920,18 @@
                   <span style="padding: 6px 12px; border-radius: 100px; background: linear-gradient(135deg, var(--blue), var(--cyan)); color: white; font-weight: 800;">${vendedor}</span>
                   <span style="font-weight: 800;">${formatMoney(valor)}</span>
                   <span style="color: var(--muted); font-size: 12px;">${hora}</span>
-                  <span style="padding: 4px 8px; border-radius: 100px; background: ${st === 'QUITADO' ? 'rgba(24,169,87,0.1)' : 'rgba(224,49,58,0.1)'}; color: ${st === 'QUITADO' ? 'var(--ok)' : 'var(--bad)'};">${st}</span>
+                  <span style="padding: 4px 8px; border-radius: 100px; background: rgba(24,169,87,0.1); color: var(--ok);">${st}</span>
                 </div>
-                <button onclick="excluirVenda('${id}')" style="padding: 8px 12px; border-radius: 100px; border: 1px solid rgba(224,49,58,0.3); background: rgba(224,49,58,0.1); color: var(--bad); cursor: pointer;">✕</button>
+                <button onclick="excluirVenda('${id}')" style="padding: 8px 12px; border-radius: 100px; border: 1px solid rgba(224,49,58,0.3); background: rgba(224,49,58,0.1); color: var(--bad); cursor: pointer; font-weight: bold;">✕</button>
               </div>
             `);
           }
         }
       } else {
-        histDiv.innerHTML = `<div style="color: var(--muted); padding: 20px; text-align: center;">Nenhuma venda registrada</div>`;
+        histDiv.innerHTML = `<div style="color: var(--muted); padding: 20px; text-align: center;">✨ Nenhuma venda registrada</div>`;
       }
 
-      // Ranking
+      // Ranking com os 4 participantes
       const ordered = Object.entries(totais).sort((a, b) => b[1] - a[1]);
       const leaderName = ordered[0]?.[0] || "";
       const leaderVal = ordered[0]?.[1] || 0;
@@ -919,9 +946,9 @@
               <div>
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-weight: 900; font-size: 18px;">${nome}</span>
-                  ${isLeader ? '<span style="font-size: 20px;">👑</span>' : ''}
+                  ${isLeader ? '<span style="font-size: 24px;">👑</span>' : ''}
                 </div>
-                <div style="color: var(--muted); font-size: 12px;">${total >= META ? '🏆 META BATIDA' : `${formatMoney(META - total)} restante`}</div>
+                <div style="color: var(--muted); font-size: 12px;">${total >= META ? '🏆 META BATIDA 🎉' : `💰 Faltam ${formatMoney(META - total)}`}</div>
               </div>
               <div class="total-pill">${formatMoney(total)}</div>
             </div>
@@ -938,18 +965,22 @@
 
       // Atualizar stats
       document.getElementById("totalGeral").textContent = formatMoney(totalGeral);
-      document.getElementById("liderAtual").innerHTML = leaderName ? `${leaderName}<br><span style="font-size: 14px;">${formatMoney(leaderVal)}</span>` : "—";
-      document.getElementById("metaGeral").textContent = `${((totalGeral / (META * 3)) * 100).toFixed(1)}%`;
+      document.getElementById("liderAtual").innerHTML = leaderName ? `${leaderName}<span style="font-size: 14px; display: block;">${formatMoney(leaderVal)}</span>` : "—";
+      
+      const progressoGeral = (totalGeral / (META * 4)) * 100;
+      document.getElementById("metaGeral").textContent = `${progressoGeral.toFixed(1)}%`;
 
-      // Notificações
+      // Notificações de líder e meta batida
       if (leaderName && leaderName !== prevLeader) {
-        if (prevLeader) toast("Novo líder! 👑", `${leaderName} assumiu a liderança`, "info");
+        if (prevLeader) toast("👑 NOVO LÍDER!", `${leaderName} assumiu a liderança com ${formatMoney(leaderVal)}`, "info");
         prevLeader = leaderName;
       }
 
-      const hit = Object.entries(totais).some(([nome, total]) => total >= META && prevTotals[nome] < META);
-      if (hit) {
-        toast("🎉 META BATIDA!", "Alguém atingiu R$ 10.000 em quitados!", "ok");
+      // Verifica quem bateu a meta agora
+      for (const [nome, total] of Object.entries(totais)) {
+        if (total >= META && prevTotals[nome] < META) {
+          toast("🎉 META BATIDA!", `PARABÉNS ${nome}! Você garantiu o almoço no Ditos! 🍽️`, "ok");
+        }
       }
 
       prevTotals = { ...totais, totalGeral };
@@ -957,7 +988,7 @@
     }, (error) => {
       console.error(error);
       statusNet.innerHTML = '<span style="width: 8px; height: 8px; background: #e0313a; border-radius: 50%;"></span><b>OFFLINE</b>';
-      toast("Erro de conexão", "Verifique sua internet", "bad");
+      toast("Erro de conexão", "Verifique sua internet e tente recarregar", "bad");
     });
   </script>
 </body>
